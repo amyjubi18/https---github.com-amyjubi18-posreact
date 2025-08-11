@@ -11,8 +11,12 @@ export async function MostrarUsuarios(p){
     .maybeSingle();
     return data;
 }
-
 export async function InsertarAdmin(p){
+    await supabase
+    .from(tabla)
+    .insert(p);
+}
+/*export async function InsertarAdmin(p){
     const {error} = await supabase
     .from(tabla)
     .insert(p);
@@ -24,4 +28,4 @@ export async function InsertarAdmin(p){
         });
         return;
         }
-}
+}*/

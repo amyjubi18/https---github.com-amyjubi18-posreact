@@ -7,7 +7,7 @@ export async function MostrarTipoDocumentos(p){
     const {data} = await supabase
     .from(tabla)
     .select()
-    .eq('id_empresa', p.id_empresa)
-    .maybeSingle();
+    .eq('id_empresa', p.id_empresa);
+    
     return data;
 }

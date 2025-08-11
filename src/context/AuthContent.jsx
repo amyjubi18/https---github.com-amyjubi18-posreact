@@ -6,46 +6,50 @@ import { MostrarUsuarios, InsertarEmpresa, InsertarAdmin, MostrarTipoDocumentos,
 const AuthContext = createContext();
 export const AuthContextProvider = ({children}) =>{
     //
-    const [user, setUser] = useState(null);
-    const [sessionStatus, setSessionStatus] = useState(0);
+    const [user, setUser] = useState([]);
+//const [sessionStatus, setSessionStatus] = useState(0);
     //useEffect hace cambio dos veces
     useEffect(()=>{
-        if(sessionStatus==0 || user){
+        /* if(sessionStatus==0 || user){
             return;
         }
-        setSessionStatus(1)})
+        setSessionStatus(1)}) */
 
         const {data} =supabase.auth.onAuthStateChange(async(event,session)=>{
+            console.log(event);
             if(session==null){
                 setUser(null)
             }else{
             
                 
                 setUser(session?.user)
-                //pruebo?
+               
 
                 console.log("session", session.user)
                 insertarDatos(session?.user.id,session?.user.email);
             }
+        });
             //console.log(event,session);
            
         return ()=>{
             data.subscription;
-        }
+        };
     },[]);
 
-    const insertarDatos = async (id_auth, correo) => {
-        const response = await MostrarUsuarios({id_auth:id_auth}); 
-        if (response) {
-            console.log('El usuario ya existe:', response);
+    const insertarDatos = async ( id_auth/*, correo */) => {
+        const response =  await MostrarUsuarios({id_auth:id_auth}); 
+        
+         if (response) {
+            //console.log('El usuario ya existe:', response);
         } else {
-            console.log('El usuario no existe', response);
+            
             const responseEmpresa = await InsertarEmpresa({id_auth:id_auth});
-
-           const responseTipoDoc =  await MostrarTipoDocumentos({id_empresa:responseEmpresa?.id});
-                console.log('respuesta tipodoc', responseTipoDoc);
-
-                const responseRol = await MostrarRolesXnombre({nombre:"superadmin"});
+            //console.log('respuesta empresa', responseEmpresa);
+   
+            const responseTipoDoc =   await MostrarTipoDocumentos({id_empresa:responseEmpresa.id});
+                console.log('respuesta tipodoc', responseTipoDoc );
+                console.log(responseEmpresa);
+               /* const responseRol = await MostrarRolesXnombre({nombre:"superadmin"});
                 
                const pUser   = {
                     id_tipodocumento:responseTipoDoc?.id,
@@ -53,13 +57,11 @@ export const AuthContextProvider = ({children}) =>{
                     correo:correo,
                     fecharegistro: new Date(),
                     id_auth:id_auth,
-                };  
-                await InsertarAdmin(pUser);
+                };   */
+                await InsertarAdmin(); 
             //crea todo eso en las tablas
-        }
+        } 
     };
-    //
-
 
     return(
         <AuthContext.Provider value={{user}}>
@@ -67,6 +69,7 @@ export const AuthContextProvider = ({children}) =>{
         </AuthContext.Provider>
     )
 };
+
 export const UserAuth = () => {
     return useContext(AuthContext);
 
