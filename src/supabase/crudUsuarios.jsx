@@ -12,20 +12,13 @@ export async function MostrarUsuarios(p){
     return data;
 }
 export async function InsertarAdmin(p){
-    await supabase
+    const {error} =await supabase
     .from(tabla)
     .insert(p);
-}
-/*export async function InsertarAdmin(p){
-    const {error} = await supabase
-    .from(tabla)
-    .insert(p);
-    if(error){
     Swal.fire({
             icon: "error",
             title: "Oops...",
             text: error.message    
         });
-        return;
-        }
-}*/
+    return;
+}

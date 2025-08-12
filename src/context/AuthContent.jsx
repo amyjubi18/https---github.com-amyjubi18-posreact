@@ -10,22 +10,15 @@ export const AuthContextProvider = ({children}) =>{
 //const [sessionStatus, setSessionStatus] = useState(0);
     //useEffect hace cambio dos veces
     useEffect(()=>{
-        /* if(sessionStatus==0 || user){
-            return;
-        }
-        setSessionStatus(1)}) */
+        
 
         const {data} =supabase.auth.onAuthStateChange(async(event,session)=>{
             console.log(event);
             if(session==null){
                 setUser(null)
-            }else{
-            
-                
+            }else{  
                 setUser(session?.user)
-               
-
-                console.log("session", session.user)
+                //console.log("session", session.user)
                 insertarDatos(session?.user.id,session?.user.email);
             }
         });
@@ -36,38 +29,34 @@ export const AuthContextProvider = ({children}) =>{
         };
     },[]);
 
-    const insertarDatos = async ( id_auth/*, correo */) => {
-        const response =  await MostrarUsuarios({id_auth:id_auth}); 
-        
-         if (response) {
-            //console.log('El usuario ya existe:', response);
-        } else {
-            
-            const responseEmpresa = await InsertarEmpresa({id_auth:id_auth});
-            //console.log('respuesta empresa', responseEmpresa);
-   
-            const responseTipoDoc =   await MostrarTipoDocumentos({id_empresa:responseEmpresa.id});
-                console.log('respuesta tipodoc', responseTipoDoc );
-                console.log(responseEmpresa);
-               /* const responseRol = await MostrarRolesXnombre({nombre:"superadmin"});
-                
-               const pUser   = {
-                    id_tipodocumento:responseTipoDoc?.id,
-                    id_rol:responseRol?.id,
-                    correo:correo,
-                    fecharegistro: new Date(),
-                    id_auth:id_auth,
-                };   */
-                await InsertarAdmin(); 
-            //crea todo eso en las tablas
-        } 
-    };
+    const insertarDatos = async (id_auth, correo) => {
+    const response = await MostrarUsuarios({ id_auth: id_auth });
+    if (response) {
+      return;
+    } else {
+      const responseEmpresa = await InsertarEmpresa({ id_auth: id_auth });
+      const responseTipoDoc = await MostrarTipoDocumentos({
+        id_empresa: responseEmpresa?.id,
+      });
+      console.log("tipo doc", responseTipoDoc);
+      const responseRol = await MostrarRolesXnombre({ nombre: "superadmin" });
+      const pUser = {
+        id_tipodocumento: responseTipoDoc[0]?.id,
+        id_rol: responseRol?.id,
+        correo: correo,
+        fecharegistro: new Date(),
+        id_auth: id_auth,
+      };
 
-    return(
+      await InsertarAdmin(pUser);
+    }
+  };
+
+     return(
         <AuthContext.Provider value={{user}}>
             {children}
         </AuthContext.Provider>
-    )
+    ) 
 };
 
 export const UserAuth = () => {
