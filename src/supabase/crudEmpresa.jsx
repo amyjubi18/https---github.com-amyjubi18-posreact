@@ -7,13 +7,13 @@ export async function InsertarEmpresa(p) {
     .insert(p)
     .select()
     .maybeSingle();
-  if (error) {
-    // Swal.fire({
-    //   icon: "error",
-    //   title: "Oops...",
-    //   text: error.message,
-    // });
+   if (error) {
+      /*Swal.fire({
+       icon: "error",
+       title: "Oops...",
+       text: error.message,
+      });*/
     return;
-  }
+  } 
   return data;
 }

@@ -53,7 +53,7 @@ export const SecondarylinksArray = [
   {
     label: "Configuración",
     icon:"icon-park:setting-two",
-    to: "/configurar",
+    to: "/configuracion",
     color:"#CE82FF"
   },
   
@@ -80,14 +80,14 @@ export const DataModulosConfiguracion =[
     title:"Productos",
     subtitle:"registra tus productos",
     icono:"https://i.ibb.co/85zJ6yG/caja-del-paquete.png",
-    link:"/configurar/productos",
+    link:"/configuracion/productos",
    
   },
   {
     title:"Personal",
     subtitle:"ten el control de tu personal",
     icono:"https://i.ibb.co/5vgZ0fX/hombre.png",
-    link:"/configurar/usuarios",
+    link:"/configuracion/usuarios",
    
   },
 
@@ -95,21 +95,21 @@ export const DataModulosConfiguracion =[
     title:"Tu empresa",
     subtitle:"configura tus opciones básicas",
     icono:"https://i.ibb.co/x7mHPgm/administracion-de-empresas.png",
-    link:"/configurar/empresa",
+    link:"/configuracion/empresa",
     
   },
   {
     title:"Categoria de productos",
     subtitle:"asigna categorias a tus productos",
     icono:"https://i.ibb.co/VYbMRLZ/categoria.png",
-    link:"/configurar/categorias",
+    link:"/configuracion/categorias",
     
   },
   {
     title:"Marca de productos",
     subtitle:"gestiona tus marcas",
     icono:"https://i.ibb.co/1qsbCRb/piensa-fuera-de-la-caja.png",
-    link:"/configurar/marca",
+    link:"/configuracion/marca",
    
   },
 

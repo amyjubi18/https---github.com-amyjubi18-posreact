@@ -32,7 +32,6 @@ export  function LoginTemplate() {
 
             <Btnsave funcion={loginGoogle} titulo='Google' bgcolor='#fff' icono={<v.iconogoogle/>} width='100%'/>
            
-
             </div>
             <Footer />  
         
