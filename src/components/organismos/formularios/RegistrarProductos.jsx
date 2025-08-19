@@ -9,6 +9,8 @@ import {
   ContainerSelector,
   Switch1,
   Selector,
+  useSucursalesStore,
+  ListaDesplegable,
 } from "../../../index";
 import { useForm } from "react-hook-form";
 import { useEmpresaStore } from "../../../store/EmpresaStore";
@@ -26,6 +28,9 @@ export function RegistrarProductos({
     const {insertarProductos, editarProductos} = useProductosStore();
     const {dataempresa} = useEmpresaStore();
     const [stateInventarios, setStateInventarios] = useState(false);
+    const [stateSucursalesLista, setStateSucursalesLista] = useState(false);
+    const {sucursalesItemSelect, dataSucursales} =useSucursalesStore();
+
 
 const {
     register,
@@ -195,13 +200,29 @@ return (
               </ContainerSelector>
               
               
-              {
-                    stateInventarios && (<ContainerStock>
+              {stateInventarios && (
+                <ContainerStock>
                       <ContainerSelector>
                         <label> Sucursal:</label>
                         <Selector
-                          color="#1687cd"
-                          texto1="🏬"
+                        state={stateSucursalesLista}
+                        funcion={() =>
+                          setStateSucursalesLista(!stateSucursalesLista)
+                        }
+                        color="#1687cd"
+                        texto1="🏬"
+                        texto2={sucursalesItemSelect?.nombre}
+                        />
+                        <ListaDesplegable 
+                           //refetch={refetch}
+                      //funcion={selectSucursal}
+                      state={stateSucursalesLista}
+                      data={dataSucursales}
+                      top="4rem"
+                      setState={() =>
+                        setStateSucursalesLista(!stateSucursalesLista)
+                      }
+
                         />
 
                       </ContainerSelector>
