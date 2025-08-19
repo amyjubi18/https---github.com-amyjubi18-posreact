@@ -17,3 +17,11 @@ export async function InsertarEmpresa(p) {
   } 
   return data;
 }
+
+export async function MostrarEmpresaXidusuario(p){
+  const {data} = await supabase
+  .rpc("mostrarempresaxiduser", p)
+  .maybeSingle();
+  
+  return data;
+}

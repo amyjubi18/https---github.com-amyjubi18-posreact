@@ -1,34 +1,81 @@
 import styled from "styled-components";
-export function CategoriasTemplate(){
-    return (<Container>
-        <section className="area1">
+import {
+  Btn1,
+  Buscador,
+  RegistrarCategorias,
+  Title,
+  useCategoriaStore,
+} from "../../index";
+import { v } from "../../styles/variables";
+import { TablaCategorias } from "../organismos/tablas/TablaCategorias";
+import { useState } from "react";
+import ConfettiExplosion from "react-confetti-explosion";
+export function CategoriasTemplate() {
+  const [openRegistro, SetopenRegistro] = useState(false);
+  const { datacategorias,setBuscador } = useCategoriaStore();
+  const [accion, setAccion] = useState("");
+  const [dataSelect, setdataSelect] = useState([]);
+  const [isExploding, setIsExploding] = useState(false);
+  function nuevoRegistro() {
+    SetopenRegistro(!openRegistro);
+    setAccion("Nuevo");
+    setdataSelect([]);
+    setIsExploding(false)
+  }
+  return (
+    <Container>
+      {openRegistro && (
+        <RegistrarCategorias setIsExploding={setIsExploding}
+          onClose={() => SetopenRegistro(!openRegistro)}
+          dataSelect={dataSelect}
+          accion={accion}
+        />
+      )}
+      <section className="area1">
+        <Title>Categorias</Title>
+        <Btn1
+          funcion={nuevoRegistro}
+          bgcolor={v.colorPrincipal}
+          titulo="Nuevo"
+          icono={<v.iconoagregar />}
+        />
+      </section>
+      <section className="area2">
+        <Buscador setBuscador={setBuscador}/>
+      </section>
 
-        </section>
-        <section className="area2">
-            
-        </section>
-        <section className="main">
-
-        </section>
-    </Container>);
-
+      <section className="main">
+        {isExploding && <ConfettiExplosion />}
+        <TablaCategorias setdataSelect={setdataSelect} setAccion={setAccion} SetopenRegistro={SetopenRegistro} data={datacategorias} />
+      </section>
+    </Container>
+  );
 }
 const Container = styled.div`
-    height: 100vh;
-    width: 100%;
-    display: grid;
-    grid-template:
-    "area1" 100px
-    "area2" 100px
+  height: calc(100vh - 30px);
+  padding: 15px;
+  display: grid;
+  grid-template:
+    "area1" 60px
+    "area2" 60px
     "main" auto;
-    padding: 15px;
-    .area1{
-
-    }
-    .area2{
-
-    }
-    .main{
-        
-    }
-  `;
+  .area1 {
+    grid-area: area1;
+    /* background-color: rgba(103, 93, 241, 0.14); */
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 15px;
+  }
+  .area2 {
+    grid-area: area2;
+    /* background-color: rgba(7, 237, 45, 0.14); */
+    display: flex;
+    justify-content: end;
+    align-items: center;
+  }
+  .main {
+    grid-area: main;
+    /* background-color: rgba(237, 7, 221, 0.14); */
+  }
+`;

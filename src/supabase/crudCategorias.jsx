@@ -44,6 +44,7 @@ async function subirImagen(idcategoria, file){
     }
     if(data){
         const {data:urlimagen} = await supabase
+        .storage
         .from('imagenes')
         .getPulicUrl(ruta);
         return urlimagen;
@@ -73,4 +74,69 @@ export async function MostrarCategorias(p){
     return data;
 
 
+}
+export async function BuscarCategoria(p){
+    const {data} = await supabase
+    .from(tabla)
+    .select()
+    .eq('id_empresa',p.id_empresa)
+    .ilike("nombre","%"+p.nombre+"%")
+   
+    return data;
+    
+}
+export async function EliminarCategoria(p){
+    const {error} = await supabase
+    .from(tabla)
+    .delete()
+    .eq('id',p.id);
+    if(error){
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: error.message    
+        });
+        return;
+    }
+    if(p.iconi !="-"){
+        const ruta = "categorias/"+ p.id;
+        await supabase.storage
+        .from('imagenes')
+        .remove([ruta]);
+    } 
+
+}
+export async function EditarCategoria(p,fileold,filenew){
+    const {error} = await supabase
+    .rpc("editarcategorias", p)
+    if(error){
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: error.message    
+        });
+        return;
+    }
+    if(filenew!="-" && filenew.size!=undefined){
+        if(fileold!="-"){
+            await EditarIconoStorage(p._id,filenew)
+        }else{
+            const dataImagen = await subirImagen(p._id, filenew);
+            const piconoeditar = {
+            icono: dataImagen.publicUrl,
+            id: p._id
+            };            
+        await EditarIconoCategorias(piconoeditar);
+        }
+       
+    }
+}
+export async function EditarIconoStorage(id, file) {
+    const ruta = "categorias/" + id;
+    await supabase.storage
+      .from("imagenes")
+      .update(ruta,file,{
+        cacheControl: "0",
+        upsert: true,
+      })
 }

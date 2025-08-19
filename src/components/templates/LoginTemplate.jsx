@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import {Btnsave, Footer, InputText2, Title, useAuthStore} from '../../index'
+import {Btn1, Footer, InputText2, Title, useAuthStore} from '../../index'
 import { Linea } from "../atomos/Linea";
 import {v} from '../../styles/variables';
 import { Device } from "../../styles/breakpoints";
@@ -23,14 +23,14 @@ export  function LoginTemplate() {
                     <input className="form__field" type="password" placeholder="Contraseña"/>
                 </InputText2>
         
-                <Btnsave titulo='INGRESAR' bgcolor="#1cb0f6" color="255,255,255" width="100%"/>
+                <Btn1 titulo='INGRESAR' bgcolor="#1cb0f6" color="255,255,255" width="100%"/>
             </form>
             
             <Linea>
                 <span>0</span>
             </Linea>
 
-            <Btnsave funcion={loginGoogle} titulo='Google' bgcolor='#fff' icono={<v.iconogoogle/>} width='100%'/>
+            <Btn1 funcion={loginGoogle} titulo='Google' bgcolor='#fff' icono={<v.iconogoogle/>} width='100%'/>
            
             </div>
             <Footer />  

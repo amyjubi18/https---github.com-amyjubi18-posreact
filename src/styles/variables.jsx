@@ -3,6 +3,7 @@ import { BsEmojiLaughing } from "react-icons/bs";
 import { RiDeleteBin2Line, RiEditLine } from "react-icons/ri";
 import { IoIosArrowDown } from "react-icons/io";
 import { RiVipCrownFill } from "react-icons/ri";
+import { RiDeleteBinFill } from "react-icons/ri";
 import { BiUserCircle } from "react-icons/bi";
 import { RiSettings3Line } from "react-icons/ri";
 import { MdExitToApp } from "react-icons/md";
@@ -44,10 +45,17 @@ import { BsEmojiDizzy } from "react-icons/bs";
 import { FcImageFile } from "react-icons/fc";
 import { IoIosArrowBack } from "react-icons/io";
 import { GrAdd } from "react-icons/gr";
+import { FaSearch } from "react-icons/fa";
+import { FaFileImage } from "react-icons/fa";
+
 
 
 export const v = {
+  colorPrincipal: `#56b2f4`,
+  colorSecundario: `#DAC1FF`,
+  iconobuscar: FaSearch,
   iconoagregar:GrAdd,
+  iconoimagen: FaFileImage,
   iconoimagenvacia: FcImageFile,
   iconoemijivacio:BsEmojiDizzy,
   iconoreportes : TbReportAnalytics,
@@ -75,7 +83,7 @@ export const v = {
   paletacolores: CiPalette,
   emoji: BsEmojiLaughing,
   iconeditarTabla: RiEditLine,
-  iconeliminarTabla: RiDeleteBin2Line,
+  iconeliminarTabla: RiDeleteBinFill,
   colorIngresos: `#53B257`,
   colorbgingresos: `#e6ffe7`,
   colorGastos: `#fe6156`,
@@ -87,7 +95,7 @@ export const v = {
   bpbart: `48em`,
   bpmarge: `62em`,
   bphomer: `75em`,
-  colorPrincipal: `#00F34A`,
+  
   boxshadowGray: `0px 10px 15px -3px rgba(0,0,0,0.1)`,
   iconoFlechabajo: IoIosArrowDown,
   iconocorona: RiVipCrownFill,
@@ -114,7 +122,7 @@ export const v = {
   iconocalculadora: AiOutlineCalculator,
   iconocheck: BsCalendarCheck,
 
-  colorSecundario: `#DAC1FF`,
+  
   iconoflechaderecha:IoIosArrowForward,
   iconoflechaizquierda:IoIosArrowBack,
   colorselector:"#BF94FF",
