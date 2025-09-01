@@ -5,10 +5,15 @@ import {
     InsertarProductos,
     MostrarProductos,
     EditarProductos,
+    Generarcodigo,
     
 } from "../index";
 
 export const useProductosStore = create((set, get) => ({
+    refetchs:null,
+    setRefetch: (p) => {
+        set({ refetchs: p });
+    },
     buscador: "",
     setBuscador: (p) =>{
         set({buscador: p}); 
@@ -21,16 +26,18 @@ export const useProductosStore = create((set, get) => ({
         set({ parametros: p });
         set({ dataProductos: response });
         set({ ProductosItemSelect: response[0] });
+        set({ refetchs: p.refetchs });
         return response;
     },
     selectProductos: (p) => {
         set({ ProductosItemSelect: p });
     },
-    insertarProductos: async (p, file) => {
-        await InsertarProductos(p, file);
+    insertarProductos: async (p) => {
+       const response = await InsertarProductos(p);
         const { mostrarProductos } = get();
         const { parametros } = get();
         set(mostrarProductos(parametros));
+        return response;
     },
     eliminarProductos: async (p) => {
         await EliminarProductos(p);
@@ -49,5 +56,10 @@ export const useProductosStore = create((set, get) => ({
         set({ dataProductos: response });
         return response;
     },
+    codigogenerado:0,
+    generarCodigo:()=>{
+        const response = Generarcodigo({id:2})
+        set({codigogenerado:response})
+    }
         
 }));

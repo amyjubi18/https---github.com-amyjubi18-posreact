@@ -4,7 +4,7 @@ export function ListaDesplegable({ data, setState, funcion, scroll,top,state,ref
   if(!state) return;
   function seleccionar(p) {
     if(refetch){
-       refetch();
+      refetch();
     }
    
     funcion(p);

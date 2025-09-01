@@ -1,5 +1,6 @@
 {
     "recommendations": [
-        "imgildev.vscode-auto-barrel"
+        "imgildev.vscode-auto-barrel",
+        "wallabyjs.console-ninja"
     ]
 }

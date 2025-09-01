@@ -21,7 +21,7 @@ export function RegistrarCategorias({
 }) {
   const { insertarCategorias, editarCategoria } = useCategoriaStore();
   const { dataempresa } = useEmpresaStore();
-  const [currentColor, setColor] = useState("#F44336");
+  const [currentColor, setColor] = useState("#36a8f4");
   const [file, setFile] = useState([]);
   const ref = useRef(null);
   const [fileurl, setFileurl] = useState();
@@ -118,8 +118,8 @@ export function RegistrarCategorias({
             <Btn1
               funcion={abrirImagenes}
               titulo="+imagen(opcional)"
-              color="#5f5f5f"
-              bgcolor="rgb(183, 183, 182)"
+              color="#000000"
+              bgcolor="#0ba6f9"
               icono={<v.iconosupabase />}
             />
             <input
@@ -136,12 +136,12 @@ export function RegistrarCategorias({
                     className="form__field"
                     defaultValue={dataSelect.nombre}
                     type="text"
-                    placeholder="categoria"
+                    placeholder="Categoria"
                     {...register("nombre", {
                       required: true,
                     })}
                   />
-                  <label className="form__label">categoria</label>
+                  <label className="form__label">Categoria</label>
                   {errors.nombre?.type === "required" && (
                     <p>Campo requerido</p>
                   )}
@@ -161,7 +161,7 @@ export function RegistrarCategorias({
               <Btn1
                 icono={<v.iconoguardar />}
                 titulo="Guardar"
-                bgcolor="#F9D70B"
+                bgcolor="#0ba6f9"
               />
             </section>
           </form>
@@ -246,9 +246,9 @@ const PictureContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: start;
-  border: 2px dashed #f9d70b;
+  border: 2px dashed #0ba6f9;
   border-radius: 5px;
-  background-color: rgba(249, 215, 11, 0.1);
+  background-color: rgba(11, 185, 249, 0.1);
   padding: 8px;
   position: relative;
   gap: 3px;

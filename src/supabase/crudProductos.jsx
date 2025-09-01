@@ -19,20 +19,13 @@ export async function InsertarProductos(p) {
 
  export async function MostrarProductos(p) {
   const { data } = await supabase
-    .from(tabla)
-    .select()
-    .eq("id_empresa", p.id_empresa)
-    .order("id", { ascending: false });
+    .rpc("mostrarproductos",{_id_empresa:p.id_empresa});
 
   return data;
 } 
 export async function BuscarProductos(p) {
   const { data } = await supabase
-    .from(tabla)
-    .select()
-    .eq("id_empresa", p.id_empresa)
-    .ilike("nombre","%" +p.buscador +"%");
-   
+    .rpc("buscarproductos", {_id_empresa:p.id_empresa,buscador:p.buscador});
 
   return data;
 }

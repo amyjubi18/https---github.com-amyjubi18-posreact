@@ -5,6 +5,7 @@ import {
     useProductosStore,
 
   } from "../../../index";
+import { Checkbox1 } from "../Checkbox1";
 import Swal from "sweetalert2";
 import { v } from "../../../styles/variables";
 import { useState } from "react";
@@ -129,13 +130,13 @@ export function TablaProductos({
           },
         },
         {
-          accessorKey: "maneja_inventarios",
+          accessorKey: "manejar_inventarios",
           header: "Inventarios",
-          cell: (info) => (
+           cell: (info) => (
             <td data-title="Inventarios" className="ContentCell">
               <Checkbox1 isChecked={info.getValue()}/>
             </td>
-          ),
+          ), 
           enableColumnFilter: true,
           filterFn: (row, columnId, filterStatuses) => {
             if (filterStatuses.length === 0) return true;

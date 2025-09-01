@@ -12,7 +12,7 @@ import { useState } from "react";
 import ConfettiExplosion from "react-confetti-explosion";
 export function ProductosTemplate(){
     const [openRegistro, SetopenRegistro] = useState(false);
-    const {dataProductos,setBuscador} = useProductosStore();
+    const {dataProductos,setBuscador, generarCodigo} = useProductosStore();
     const [accion, setAccion] = useState("");
     const [dataSelect, setdataSelect] = useState([]);
     const [isExploding, setIsExploding] = useState(false);
@@ -21,17 +21,19 @@ export function ProductosTemplate(){
         setAccion("Nuevo");
         setdataSelect([]);
         setIsExploding(false)
+        generarCodigo();
     }
     return(
         <Container>
-           {/*  {openRegistro && ( */}
+             {openRegistro && (
                 <RegistrarProductos
                   setIsExploding={setIsExploding}
                   onClose={() => SetopenRegistro(!openRegistro)}
                   dataSelect={dataSelect}
                   accion={accion}
+                  //state={openRegistro}
                  />
-            {/* )} */}
+           )} 
             <section className="area1">
                 <Title>Productos</Title>
                 <Btn1
