@@ -1,13 +1,13 @@
 import styled from "styled-components";
-import {v} from "../../styles/variables";
-import { Btn1, InputText2, Reloj, HeaderPos } from "../../index";
+import {v} from "../../../styles/variables";
+import { Btn1, InputText2, Reloj } from "../../../index";
 export function HeaderPos(){
      return(
         <Header>
                 <section className="contentprincipal">
                     <Contentuser className="area1">
                         <div className="contentimg">
-                            <img src="https://pixabay.com/es/illustrations/icono-usuario-masculino-avatar-5359553/"/>
+                            <img src="https://i.ibb.co/rRh1WjT3/2148580033.jpg"/>
                             <h1>img</h1>
                         </div>
                         <div className="textos">
@@ -36,8 +36,11 @@ export function HeaderPos(){
                 </section>
             </Header>
 );}
-const Header = styled.div`
+const Header = styled.header`
     grid-area: header;
     background-color: #ffadad;
 
 `;
+const Contentuser = styled.div`
+
+`
