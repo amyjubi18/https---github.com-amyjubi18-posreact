@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Device } from "../../styles/breakpoints";
+import { Device } from "../../../styles/breakpoints";
 import { Btn1 } from "../../../index";
 export function FooterPos(){
 return(

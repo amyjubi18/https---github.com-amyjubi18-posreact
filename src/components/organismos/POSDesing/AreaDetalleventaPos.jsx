@@ -18,8 +18,20 @@ export function AreaDetalleventaPos(){
 }
 
 const Itemventa = styled.section`
-
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
     `;
 const AreaDetalleventa = styled.section`
-    
+    display: flex;
+    width: 100%;
+    .contentdescripcion{
+        display: flex;
+        flex-direction: column;
+        .descripcion{
+            font-weight: 700;
+            font-size: 20px;
+        
+        }
+    }
 `;
