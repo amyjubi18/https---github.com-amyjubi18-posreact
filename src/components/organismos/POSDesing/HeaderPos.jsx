@@ -1,8 +1,13 @@
 import styled from "styled-components";
 import {v} from "../../../styles/variables";
-import { Btn1, InputText2, Reloj } from "../../../index";
+import { Btn1, InputText2, ListaDesplegable, Reloj } from "../../../index";
 import { Device } from "../../../styles/breakpoints";
+import { Icon } from "@iconify/react/dist/iconify.js";
+import { useState } from "react";
 export function HeaderPos(){
+    const [stateLector, setStateLector] = useState(true);
+    const [stateTeclado, setStateTeclado] = useState(false);
+    const [stateListaproductos, setStateListaproductos] = useState(false);
      return(
         <Header>
                 <section className="contentprincipal">
@@ -26,24 +31,48 @@ export function HeaderPos(){
                 <section className="contentbuscador">
                     <article className="area1">
                         <InputText2>
-                        <input type="text" className="form__field" placeholder="Buscar..."/>
+                        
+                        <input type="text" className="form__field" placeholder="Buscar..." />
+                        <ListaDesplegable state={stateListaproductos}/>
                         </InputText2>
                     </article>
                     <article className="area2">
-                        <Btn1 titulo="Lector"/>
-                        <Btn1 titulo="Teclado"/>
+                        <Btn1
+                        funcion={()=>{
+                            setStateLector(true);
+                            setStateTeclado(false);
+                        }} 
+                        bgcolor={stateLector?"#032a6d":({theme})=> theme.bgtotal} 
+                        color={stateLector?"#fff":({theme})=> theme.text} 
+                        border="2px" 
+                        titulo="Lector" 
+                        icono={<Icon icon="material-symbols:barcode-reader-outline" width="24" height="24"   
+                        />}/>
+                        <Btn1 
+                        funcion={()=>{
+                            setStateLector(false);
+                            setStateTeclado(true);
+                        }} 
+                        bgcolor={stateTeclado?"#032a6d":({theme})=> theme.bgtotal} 
+                        color={stateTeclado?"#fff":({theme})=> theme.text} 
+                        border="2px" 
+                        titulo="Teclado" 
+                        icono={<Icon icon="icon-park:enter-the-keyboard" width="24" height="24" />}/>
                     </article>
                 </section>
             </Header>
 );}
 const Header = styled.header`
     grid-area: header;
-    background-color: #ffadad;
+    //background-color: #ffadad;
     display: flex;
     height: 100%;
-    border-bottom:  2px solid ${({theme})=> theme.color2};
     flex-direction: column;
     gap: 10px;
+    @media ${Device.desktop}{
+            border-bottom:  2px solid ${({theme})=> theme.color2};
+
+    }
     .contentprincipal{
         width: 100%;
         display: grid;

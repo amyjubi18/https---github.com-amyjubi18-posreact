@@ -14,9 +14,15 @@ return(
 }
 const Footer = styled.section`
     grid-area: footer;
-    background-color: #a3a3fc;
+    //background-color: #a3a3fc;
     display: none;
+    align-items: center;
     @media ${Device.desktop}{
         display: flex;
+    }
+    .content{
+        display: flex;
+        gap: 8px;
+        align-items: center;
     }
 `;

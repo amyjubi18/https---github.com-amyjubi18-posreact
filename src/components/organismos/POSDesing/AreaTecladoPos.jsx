@@ -1,21 +1,22 @@
 import styled from "styled-components";
 import { Btn1, TotalPos } from "../../../index";
 import { Device } from "../../../styles/breakpoints";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 export function AreaTecladoPos(){
     return(
     <Container>
         <section className="areatipopago">
             <article className="box">
-                <Btn1 titulo="EFECTIVO" border="0" heigth="70px" width="100%"/>
-                 <Btn1 titulo="DIVISA" border="0" heigth="70px" width="100%"/>
+                <Btn1 titulo="EFECTIVO" border="2px" heigth="70px" width="100%" icono={<Icon icon="streamline-ultimate-color:cash-payment-bills-1" width="24" height="24" />} bgcolor="#56a24dd6"/>
+                 <Btn1 titulo="DIVISA" border="2px" heigth="70px" width="100%" icono={<Icon icon="streamline-ultimate-color:cash-payment-coin-dollar" width="24" height="24" />} bgcolor="#f5e109eb"/>
             </article>
             <article className="box">
-                <Btn1 titulo="TARJETA" border="0" heigth="70px"  width="100%"/>
-                <Btn1 titulo="PAGO MOVIL" border="0" heigth="70px "  width="100%"/>
+                <Btn1 titulo="TARJETA" border="2px" heigth="70px"  width="100%" icono={<Icon icon="fluent-emoji-flat:credit-card" width="24" height="24" />} bgcolor="#59c0f8f0"/>
+                <Btn1 titulo="PAGO MOVIL" border="2px" heigth="70px "  width="100%" icono={<Icon icon="noto:mobile-phone" width="24" height="24" />} bgcolor="#f24040fc"/>
             </article>
             <article className="box">
-                 <Btn1 titulo="MIXTO" border="0" heigth="70px"  width="100%"/>
+                 <Btn1 titulo="MIXTO" border="2px" heigth="70px"  width="100%" icono={<Icon icon="ix:mix" width="24" height="24" />} color="#032a6d" bgcolor="#8a4da2d5"/>
             </article>
         </section>
         <section className="totales">
@@ -37,7 +38,8 @@ const Container = styled.div`
      justify-content: space-between;
      position: absolute;
      bottom: 10px;
-     width: 100%;
+     width: calc(100% - 5px);
+     border-radius: 15px;
      @media ${Device.desktop}{
         position: relative;
         width: auto;
@@ -59,6 +61,7 @@ const Container = styled.div`
         display: flex;
         flex-direction: column;
         gap: 10px;
+        padding: 10px;
         .subtotal{
             display: none;
             flex-direction: column;

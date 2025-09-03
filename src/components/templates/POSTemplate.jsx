@@ -16,15 +16,16 @@ export function POSTemplate(){
     )
 }
 const Container = styled.div`
-height: calc(100vh - 20px);
+height: calc(100vh - 60px);
 display: grid;
 padding: 10px;
+padding-top: 50px;
 grid-template: "header" 220px
                 "main" auto;
                 @media ${Device.desktop}{
                     grid-template: "header header" 140px
                                     "main main"
-                                    "footer footer";
+                                    "footer footer" 60px;
                 }
 `;
 
@@ -32,7 +33,7 @@ grid-template: "header" 220px
 
 const Main = styled.div`
     grid-area: main;
-    background-color: #11b093;
+    //background-color: #11b093;
     display: flex;
     flex-direction: column;
     width: 100%;

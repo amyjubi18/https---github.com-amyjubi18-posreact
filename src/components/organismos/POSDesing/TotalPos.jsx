@@ -55,7 +55,7 @@ overflow: hidden;
 .imagen{
     z-index: 1;
     width: 55px;
-    bottom: 30px;
+    //bottom: 30px;
     position: relative;
     @media ${Device.desktop}{
         bottom: initial;

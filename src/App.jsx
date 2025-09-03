@@ -1,4 +1,4 @@
-import { AuthContextProvider, GlobalStyle, MyRoutes, Sidebar, useThemeStore, Login }  from './index'
+import { AuthContextProvider, GlobalStyle, MyRoutes, Sidebar, useThemeStore, Login, SwitchHamburguesa }  from './index'
 import styled, {ThemeProvider} from 'styled-components'
 import { Device } from './styles/breakpoints';
 import { useState } from 'react';
@@ -25,7 +25,7 @@ function App() {
             />
             </section>
             <section className='contentMenuhambur'>
-            hamburguer
+           <SwitchHamburguesa/>
             </section>
             <section className='contentRouters'>
               <MyRoutes />
