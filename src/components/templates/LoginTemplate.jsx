@@ -12,7 +12,7 @@ export  function LoginTemplate() {
             <div className="card">
                 <ContentLogo>
                     <img src={v.logo} alt="" />
-                    <span>Sistema POS</span>
+                    <span>Sistema POS ventas</span>
                 </ContentLogo>
             <Title $paddingbottom="20px">Ingresar</Title>
             <form>
@@ -23,14 +23,14 @@ export  function LoginTemplate() {
                     <input className="form__field" type="password" placeholder="Contraseña"/>
                 </InputText2>
         
-                <Btn1 titulo='INGRESAR' bgcolor="#1cb0f6" color="255,255,255" width="100%"/>
+                <Btn1 titulo='INGRESAR' bgcolor="#1cb0f6" color="#fff" width="100%" border="2px"/>
             </form>
             
             <Linea>
                 <span>0</span>
             </Linea>
 
-            <Btn1 funcion={loginGoogle} titulo='Google' bgcolor='#fff' icono={<v.iconogoogle/>} width='100%'/>
+            <Btn1 border="2px" funcion={loginGoogle} titulo='Google' bgcolor='#fff' icono={<v.iconogoogle/>} width='100%'/>
            
             </div>
             <Footer />  
@@ -61,6 +61,11 @@ const Container = styled.div`
             @media ${Device.tablet}{
                 width:400px;
                 
+            }
+            form{
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
             }
         }
     

@@ -1,13 +1,31 @@
 import styled from "styled-components";
 import {v} from "../../../styles/variables";
-import { Btn1, InputText2, ListaDesplegable, Reloj } from "../../../index";
+import { Btn1, InputText2, ListaDesplegable, Reloj, useProductosStore } from "../../../index";
 import { Device } from "../../../styles/breakpoints";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 export function HeaderPos(){
     const [stateLector, setStateLector] = useState(true);
     const [stateTeclado, setStateTeclado] = useState(false);
     const [stateListaproductos, setStateListaproductos] = useState(false);
+    const {setBuscador, dataProductos, selectProductos} = useProductosStore();
+    const buscadorRef= useRef(null);
+    function focusclick(){
+        buscadorRef.current.focus();
+        buscadorRef.current.value.trim() === ""?setStateListaproductos(false):setStateListaproductos(true)
+    } 
+    function buscar(e){
+        setBuscador(e.target.value);
+        let texto= e.target.value;
+        if(texto.trim()==="" || stateLector){
+            setStateListaproductos(false)
+        }else{
+            setStateListaproductos(true)
+        }
+    }
+    useEffect(() =>{
+        buscadorRef.current.focus();
+    },[])
      return(
         <Header>
                 <section className="contentprincipal">
@@ -32,8 +50,8 @@ export function HeaderPos(){
                     <article className="area1">
                         <InputText2>
                         
-                        <input type="text" className="form__field" placeholder="Buscar..." />
-                        <ListaDesplegable state={stateListaproductos}/>
+                        <input ref={buscadorRef} onChange={buscar} type="text" className="form__field" placeholder="Buscar..." />
+                        <ListaDesplegable funcion={selectProductos} setState={()=>setStateListaproductos(!stateListaproductos)} data={dataProductos} state={stateListaproductos} />
                         </InputText2>
                     </article>
                     <article className="area2">
@@ -41,6 +59,8 @@ export function HeaderPos(){
                         funcion={()=>{
                             setStateLector(true);
                             setStateTeclado(false);
+                            setStateListaproductos(false);
+                            focusclick()
                         }} 
                         bgcolor={stateLector?"#032a6d":({theme})=> theme.bgtotal} 
                         color={stateLector?"#fff":({theme})=> theme.text} 
@@ -52,6 +72,7 @@ export function HeaderPos(){
                         funcion={()=>{
                             setStateLector(false);
                             setStateTeclado(true);
+                            focusclick()
                         }} 
                         bgcolor={stateTeclado?"#032a6d":({theme})=> theme.bgtotal} 
                         color={stateTeclado?"#fff":({theme})=> theme.text} 

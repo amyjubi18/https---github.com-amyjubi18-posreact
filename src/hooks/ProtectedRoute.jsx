@@ -1,7 +1,19 @@
-import { Navigate, Outlet } from "react-router-dom"
+import { Navigate } from "react-router-dom"
+import { UserAuth } from "../context/AuthContent";
 
-export const ProtectedRoutes = ({user, redirectTo, children})=>{
-    if(user==null) return <Navigate replace to={redirectTo}/>;
-    return children?children:<Outlet/>;
+export const ProtectedRoutes = ({children, accessBy})=>{
+    const {user} = UserAuth();
+    if(accessBy==="non-authenticated"){
+        if(!user){
+            return children;
+        }else{
+            return <Navigate to="/" />
+        }
+    }else if(accessBy==="authenticated"){
+        if(user){
+            return children;
+        }
+    }
+    return <Navigate to="/login/" />
 
 };

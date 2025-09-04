@@ -7,7 +7,7 @@ export function Categorias(){
     const {isLoading, error} = useQuery({queryKey:["mostrar categorias", dataempresa?.id],queryFn:()=>mostrarCategorias({id_empresa:dataempresa?.id}),enabled:!!dataempresa?.id,refetchOnWindowFocus:false})
 
     //buscar categorias
-    const {} = useQuery({queryKey:["buscar categorias", buscador],queryFn:()=>buscarCategorias({id_empresa:dataempresa?.id,nombre:buscador}),enabled:!!dataempresa?.id,refetchOnWindowFocus:false})
+    /* const {} =  */useQuery({queryKey:["buscar categorias", buscador],queryFn:()=>buscarCategorias({id_empresa:dataempresa?.id,nombre:buscador}),enabled:!!dataempresa?.id,refetchOnWindowFocus:false})
     if(isLoading){
         return (<Spinner1/>)
     }if(error){

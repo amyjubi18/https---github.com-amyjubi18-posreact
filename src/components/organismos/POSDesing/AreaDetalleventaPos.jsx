@@ -25,6 +25,7 @@ const Itemventa = styled.section`
 const AreaDetalleventa = styled.section`
     display: flex;
     width: 100%;
+    margin-top: 10px;
     .contentdescripcion{
         display: flex;
         flex-direction: column;

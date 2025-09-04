@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Btn1 } from "../../../index";
 import { Device } from "../../../styles/breakpoints";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 export function TotalPos(){
     return (
@@ -10,8 +11,8 @@ export function TotalPos(){
             </section>
             <section className="contentTotal">
                 <section className="contentTituloTotal">
-                    <Btn1 titulo="COBRAR"/>
-                    <Btn1 titulo="..."/>
+                    <Btn1 border="2px" bgcolor="#fff" titulo="COBRAR" icono={<Icon icon="noto:money-bag" width="24" height="24" />}/>
+                    <Btn1 border="2px" bgcolor="#3f7cf5" titulo="..." icono={<Icon icon="noto:soon-arrow" width="24" height="24" />}/>
                 </section>
                 <span>$9.99</span>
             </section>
